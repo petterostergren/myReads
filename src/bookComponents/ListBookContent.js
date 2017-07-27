@@ -6,9 +6,9 @@ class ListBooksContent extends Component {
   render() {
     return(
       <div className="list-books-content">
-          <BookShelf />
-          <BookShelf />
-          <BookShelf />
+          <BookShelf shelfTitle={"Currently Reading"}/>
+          <BookShelf shelfTitle="Want to read"/>
+          <BookShelf shelfTitle="Read"/>
       </div>
 
     )
