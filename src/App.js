@@ -8,13 +8,52 @@ import MainBookWrapper from './bookComponents/MainBookWrapper'
 class BooksApp extends Component {
   state = {
     books: [],
+    bookShelfMapping: {},
+    searchResult: []
 
   }
 
   componentDidMount(){
     BooksAPI.getAll().then(books => {
-      this.setState({ books })
+      const updateShelfMapping = {}
+      books.map(book => updateShelfMapping[book.id] = book.shelf )
+
+      this.setState( s => ({
+        books: books,
+        bookShelfMapping: updateShelfMapping
+      }))
     })
+  }
+
+  bookStateUpdated = (book, change) => {
+    book.shelf = change
+
+    const updateShelfMapping = this.state.bookShelfMapping
+    updateShelfMapping[book.id] = book.shelf
+
+    this.setState(state => ({
+      books: state.books.filter(b => b.id !== book.id).concat([book]),
+      bookShelfMapping: updateShelfMapping
+    }))
+    BooksAPI.update(book, change)
+  }
+
+  onSearch = (query) => {
+    BooksAPI.search(query).then((searchResult) => {
+      if (Array.isArray(searchResult)) {
+        searchResult.map((books) => {
+          books.shelf = this.state.bookShelfMapping[books.id] ?
+          this.state.bookShelfMapping[books.id] : 'none'
+        })
+        // Check if users changes searchResult
+        if(this.state.searchResult !== searchResult) {
+          this.setState({searchResult})
+
+        }
+      } else {
+        this.setState({searchResults: []})
+      }
+    }).catch( e => console.log(e))
   }
 
 
@@ -30,7 +69,9 @@ class BooksApp extends Component {
         )}/>
         <Route path="/search" render={() => (
           <SearchBooks
-            books = {this.state.books}
+            searchResult = {this.state.searchResult}
+            onSearch = {this.onSearch}
+            bookStateUpdated = {this.bookStateUpdated}
 
 
           />
