@@ -1,15 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
-import * as BooksAPI from './BooksAPI'
-import PropTypes from 'prop-types'
-import Book from './bookComponents/Book'
-
-
-
+import Book from './Book'
 
 class SearchBooks extends Component {
-
   state = {
     query : '',
   }
@@ -41,9 +34,11 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {this.props.searchResults.map((book) => {
+              return (
               <Book
                 bookStateUpdated={this.props.bookStateUpdated}
               />
+            )
             })}
 
 

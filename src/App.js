@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import { debouncer} from 'lodash.debounce'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import SearchBooks from './SearchBooks'
-import MainBookWrapper from './bookComponents/MainBookWrapper'
+import SearchBooks from './Components/SearchBooks'
+import MainBookWrapper from './Components/MainBookWrapper'
 
 class BooksApp extends Component {
   state = {
@@ -17,7 +18,6 @@ class BooksApp extends Component {
     BooksAPI.getAll().then(books => {
       const updateShelfMapping = {}
       books.map(book => updateShelfMapping[book.id] = book.shelf )
-
       this.setState( s => ({
         books: books,
         bookShelfMapping: updateShelfMapping
@@ -32,13 +32,13 @@ class BooksApp extends Component {
     updateShelfMapping[book.id] = book.shelf
 
     this.setState(state => ({
-      books: state.books.filter(b => b.id !== book.id).concat([book]),
-      bookShelfMapping: updateShelfMapping
-    }))
+        books: state.books.filter(b => b.id !== book.id).concat([ book ]),
+        bookShelfMapping : updateShelfMapping
+      }))
     BooksAPI.update(book, change)
   }
 
-  onSearch = (query) => {
+  onSearch = debouncer((query) => {
     BooksAPI.search(query).then((searchResult) => {
       if (Array.isArray(searchResult)) {
         searchResult.map((books) => {
@@ -54,7 +54,7 @@ class BooksApp extends Component {
         this.setState({searchResults: []})
       }
     }).catch( e => console.log(e))
-  }
+  }, 500)
 
 
   render() {
@@ -62,6 +62,8 @@ class BooksApp extends Component {
       <div className="app">
         <Route exact path="/" render={() => (
           <MainBookWrapper
+            bookStateUpdated = {this.bookStateUpdated}
+            books = {this.state.books}
 
 
           />

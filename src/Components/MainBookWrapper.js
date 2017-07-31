@@ -10,7 +10,10 @@ class MainBookWrapper extends Component {
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
-          <ListBookContent />
+          <ListBookContent
+            bookStateUpdated = {this.props.bookStateUpdated}
+            books = {this.props.books}
+        />
           <div className="open-search">
             <Link to='/search'>Add a book</Link>
           </div>
