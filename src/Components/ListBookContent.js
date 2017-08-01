@@ -24,6 +24,7 @@ class ListBooksContent extends Component {
     for (const shelf of this.bookShelfLabels)
     {bookShelves.push(
       <BookShelf
+        key={shelf.label}
         books={this.props.books.filter(b => b.shelf === shelf.label)}
         bookStateUpdated={this.props.bookStateUpdated}
         shelfLabel={shelf.label}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import { debouncer} from 'lodash.debounce'
+import { debounce } from 'lodash'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchBooks from './Components/SearchBooks'
@@ -38,7 +38,7 @@ class BooksApp extends Component {
     BooksAPI.update(book, change)
   }
 
-  onSearch = debouncer((query) => {
+  onSearch = debounce((query) => {
     BooksAPI.search(query).then((searchResult) => {
       if (Array.isArray(searchResult)) {
         searchResult.map((books) => {
