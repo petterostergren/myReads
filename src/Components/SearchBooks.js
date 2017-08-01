@@ -33,15 +33,13 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.props.searchResults.map((book) => {
-              return (
-              <Book
-                bookStateUpdated={this.props.bookStateUpdated}
-              />
-            )
-            })}
-
-
+            {this.props.searchResult.map((book) => (
+                <Book
+                  key={book.id}
+                  book={book}
+                  onSearch={this.props.onSearch}
+                />
+            ))}
           </ol>
 
 

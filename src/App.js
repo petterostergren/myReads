@@ -39,8 +39,12 @@ class BooksApp extends Component {
   }
 
   onSearch = debounce((query) => {
-    BooksAPI.search(query).then((searchResult) => {
-      if (Array.isArray(searchResult)) {
+
+    console.log("in onSearch")
+    BooksAPI.search(query, 5).then((searchResult) => {
+      console.log(searchResult.books)
+      if (typeof searchResult.shelf !== 'undefined' && Array.isArray(searchResult)) {
+        console.log(searchResult.books)
         searchResult.map((books) => {
           books.shelf = this.state.bookShelfMapping[books.id] ?
           this.state.bookShelfMapping[books.id] : 'none'
@@ -51,10 +55,12 @@ class BooksApp extends Component {
 
         }
       } else {
-        this.setState({searchResults: []})
+
       }
     }).catch( e => console.log(e))
-  }, 500)
+}, 300)
+
+
 
 
   render() {
