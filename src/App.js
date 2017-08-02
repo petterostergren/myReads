@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React,{Component} from 'react'
 import { Route } from 'react-router-dom'
 import { debounce } from 'lodash'
 import * as BooksAPI from './BooksAPI'
@@ -18,7 +18,7 @@ class BooksApp extends Component {
     BooksAPI.getAll().then(books => {
       const updateShelfMapping = {}
       books.map(book => updateShelfMapping[book.id] = book.shelf )
-      this.setState( s => ({
+      this.setState( () => ({
         books: books,
         bookShelfMapping: updateShelfMapping
       }))

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
 
@@ -40,4 +41,9 @@ class ListBooksContent extends Component {
   }
 }
 
+
+ListBooksContent.propTypes = {
+  books: PropTypes.array.isRequired,
+  bookStateUpdated: PropTypes.func.isRequired
+};
 export default ListBooksContent

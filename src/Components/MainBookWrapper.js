@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import ListBookContent from './ListBookContent'
 
 
@@ -21,5 +22,10 @@ class MainBookWrapper extends Component {
     )
   }
 }
+
+MainBookWrapper.propTypes = {
+  books: PropTypes.array.isRequired,
+  bookStateUpdated: PropTypes.func.isRequired
+};
 
 export default MainBookWrapper
