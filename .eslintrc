@@ -1,0 +1,27 @@
+{
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
+    },
+    "rules": {
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
+        "jsx-a11y/img-has-alt": [0],
+    },
+    "plugins": [
+        "react",
+        "jsx-a11y"
+    ],
+    "extends": [
+        "eslint:recommended", "plugin:react/recommended",
+    ],
+    "settings": {
+        "react": {
+          "createClass": "createReactClass", // Regex for Component Factory to use, default to "createReactClass"
+        }
+    }
+
+}
