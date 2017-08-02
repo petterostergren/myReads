@@ -25,6 +25,7 @@ class BooksApp extends Component {
     })
   }
 
+  // Handles bookshelf changes
   bookStateUpdated = (book, change) => {
     book.shelf = change
 
@@ -38,29 +39,30 @@ class BooksApp extends Component {
     BooksAPI.update(book, change)
   }
 
+  // Handles search request when input field is changed
   onSearch = debounce((query) => {
 
-    console.log("in onSearch")
-    BooksAPI.search(query, 5).then((searchResult) => {
-      console.log(searchResult.books)
-      if (typeof searchResult.shelf !== 'undefined' && Array.isArray(searchResult)) {
-        console.log(searchResult.books)
-        searchResult.map((books) => {
-          books.shelf = this.state.bookShelfMapping[books.id] ?
-          this.state.bookShelfMapping[books.id] : 'none'
-        })
-        // Check if users changes searchResult
-        if(this.state.searchResult !== searchResult) {
-          this.setState({searchResult})
+      BooksAPI.search(query).then((searchResults) => {
+        if (!searchResults || searchResults.error){
+          this.setState({searchResult : []})
+          return searchResults
+        } else if (Array.isArray(searchResults)) {
 
-        }
-      } else {
+            searchResults.map((book) => {
+              book.shelf = this.state.bookShelfMapping[book.id] ?
+              this.state.bookShelfMapping[book.id] : 'none'
+              return searchResults
 
-      }
-    }).catch( e => console.log(e))
-}, 300)
+            })
 
+            if (this.state.searchResults !== searchResults) {
 
+              this.setState({searchResult : searchResults})
+
+            }
+        } })
+        .catch(e => console.log(e))
+    }, 300)
 
 
   render() {
