@@ -1,17 +1,48 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 
 
 class Book extends Component {
+  state = {
+    isHovered: false,
+  }
+
+  onMouseEnter = () => {
+    this.setState({isHovered: true})
+
+
+  }
+
+  onMouseLeave = () => {
+    this.setState({isHovered : false})
+
+  }
+
+
   render() {
     return(
         <div className="book">
           <div className="book-top">
-            <div
-              className="book-cover"
-              style={{ width: 128, height: 193,
-                backgroundImage: `url(${this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : 'http://dvepublishing.com/images/cover_not_available.jpg'})` }}></div>
+            <Link to={`/details/${this.props.book.id}`}>
+              <div
+                className="book-cover"
+                onMouseEnter={(currentBook) => {this.onMouseEnter()
+                  currentBook = this.props.book
+                  this.setState({detailedBook: currentBook}) }}
+                onMouseLeave={(currentBook) => {this.onMouseLeave(),
+                  currentBook = this.props.book
+                  this.setState({detailedBook: ""})}}
+                style={{ width: 128, height: 193,
+                  backgroundImage: `url(${this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : 'http://dvepublishing.com/images/cover_not_available.jpg'})` }}>
+                  {this.state.isHovered ? (
+                    <div className="hover-box"></div>) :
+                  (
+                    <div />
+                  )}
+                  </div>
+            </Link>
             <div className="book-shelf-changer">
               <select
                 value={this.props.book.shelf}
@@ -33,7 +64,7 @@ class Book extends Component {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  bookStateUpdated: PropTypes.func.isRequired
+  bookStateUpdated: PropTypes.func.isRequired,
 };
 
 export default Book

@@ -44,6 +44,7 @@ class ListBooksContent extends Component {
 
 ListBooksContent.propTypes = {
   books: PropTypes.array.isRequired,
-  bookStateUpdated: PropTypes.func.isRequired
+  bookStateUpdated: PropTypes.func.isRequired,
+
 };
 export default ListBooksContent

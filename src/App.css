@@ -172,3 +172,15 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+
+/* book detailes */
+.hover-box {
+  background: #f0f0f0;
+  opacity: 0.55;
+  width : 100%;
+  height: 100%;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+  position: relative;
+}

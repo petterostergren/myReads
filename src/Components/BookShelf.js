@@ -15,7 +15,6 @@ class BookShelf extends Component {
             {this.props.books.map(book => (
               <li key={book.id}>
                 <Book
-                  key={book.id}
                   book={book}
                   bookStateUpdated={this.props.bookStateUpdated}
                 />
@@ -32,7 +31,7 @@ class BookShelf extends Component {
 BookShelf.propTypes = {
   title: PropTypes.string.isRequired,
   books: PropTypes.array.isRequired,
-  bookStateUpdated: PropTypes.func.isRequired
+  bookStateUpdated: PropTypes.func.isRequired,
 };
 
 export default BookShelf

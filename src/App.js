@@ -5,12 +5,13 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchBooks from './Components/SearchBooks'
 import MainBookWrapper from './Components/MainBookWrapper'
+import BookDetailedView from './Components/BookDetailedView'
 
 class BooksApp extends Component {
   state = {
     books: [],
     bookShelfMapping: {},
-    searchResult: []
+    searchResult: [],
 
   }
 
@@ -38,6 +39,7 @@ class BooksApp extends Component {
       }))
     BooksAPI.update(book, change)
   }
+
 
   // Handles search request when input field is changed
   onSearch = debounce((query) => {
@@ -72,8 +74,6 @@ class BooksApp extends Component {
           <MainBookWrapper
             bookStateUpdated = {this.bookStateUpdated}
             books = {this.state.books}
-
-
           />
 
         )}/>
@@ -85,6 +85,16 @@ class BooksApp extends Component {
 
 
           />
+
+        )}/>
+        <Route path="/details/:id" render={({match}) => (
+          <BookDetailedView
+            bookStateUpdated = {this.bookStateUpdated}
+            books = {this.state.books}
+            id={match.params.id}
+            searchResult= {this.state.searchResult}
+          />
+
 
         )}/>
       </div>

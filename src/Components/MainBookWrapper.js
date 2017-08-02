@@ -25,7 +25,7 @@ class MainBookWrapper extends Component {
 
 MainBookWrapper.propTypes = {
   books: PropTypes.array.isRequired,
-  bookStateUpdated: PropTypes.func.isRequired
+  bookStateUpdated: PropTypes.func.isRequired,
 };
 
 export default MainBookWrapper
