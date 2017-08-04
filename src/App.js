@@ -100,7 +100,7 @@ class BooksApp extends Component {
           />
 
         )}/>
-        <Route path="/details/:id" render={({match}) => (
+        <Route exact path="/details/:id" render={({match}) => (
           <BookDetailedView
             bookStateUpdated = {this.bookStateUpdated}
             books = {this.state.books}
