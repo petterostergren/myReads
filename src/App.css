@@ -167,7 +167,22 @@ body, .app {
 .book-cover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background: #eee;
+  -webkit-filter: brightness(100%);
+	-moz-filter: brightness(100%);
+	-o-filter: brightness(100%);
+	-ms-filter: brightness(100%);
+	filter: brightness(100%);
 }
+
+.book-cover:hover {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  -webkit-filter: brightness(80%);
+  -moz-filter: brightness(80%);
+  -o-filter: brightness(80%);
+  -ms-filter: brightness(80%);
+  filter: brightness(80%);
+}
+
 .book-cover-title {
   padding: 20px 10px 0;
   text-align: center;
@@ -178,16 +193,6 @@ body, .app {
 
 
 /* book detailes */
-.hover-box {
-  background: #f0f0f0;
-  opacity: 0.55;
-  width : 100%;
-  height: 100%;
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-  position: relative;
-}
-
 .book-detailed {
   margin-top: 20px;
   padding: 0 10px 20px;
