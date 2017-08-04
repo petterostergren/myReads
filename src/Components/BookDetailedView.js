@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-
 import PropTypes from 'prop-types'
-import Book from './Book'
 import BookShelfChanger from './BookShelfChanger'
 
 
@@ -12,7 +10,10 @@ class BookDetailedView extends Component {
     bookDetailes: []
   }
 
+
   componentWillMount() {
+      // Tries to find the book within our saved books
+      // Else it will try to look through currentSearch to find a match
       this.props.books.filter(book => {
         const bookCollection = []
         if (book.id === this.props.id) {

@@ -22,6 +22,8 @@ class ListBooksContent extends Component {
   render() {
     const bookShelves = []
 
+
+    //Goes through bookShelfLabels to autogen shelfs
     for (const shelf of this.bookShelfLabels)
     {bookShelves.push(
       <BookShelf

@@ -1,22 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Book from './Book'
 
-class BookShelf extends Component {
-
-
-  render() {
+function BookShelf(props) {
     return(
       <div className="bookshelf">
-        <h2 className="bookshelf-title">{this.props.title}</h2>
+        <h2 className="bookshelf-title">{props.title}</h2>
 
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {this.props.books.map(book => (
+            {props.books.map(book => (
               <li key={book.id}>
                 <Book
                   book={book}
-                  bookStateUpdated={this.props.bookStateUpdated}
+                  bookStateUpdated={props.bookStateUpdated}
                 />
               </li>
             ))}
@@ -26,7 +23,7 @@ class BookShelf extends Component {
 
     )
   }
-}
+
 
 BookShelf.propTypes = {
   title: PropTypes.string.isRequired,

@@ -16,8 +16,12 @@ class BooksApp extends Component {
   }
 
   componentDidMount(){
+    // Grabs all our stored books from API
     BooksAPI.getAll().then(books => {
       const updateShelfMapping = {}
+
+      // Makes sure to check what shelf they are assigned to in order to
+      // place them correctly in our ui.
       books.map(book => updateShelfMapping[book.id] = book.shelf )
       this.setState( () => ({
         books: books,
@@ -27,8 +31,11 @@ class BooksApp extends Component {
   }
 
   // Handles bookshelf changes
+  // sets a new value to our bookShelfMapping
+  // and the calles our API to update it.
   bookStateUpdated = (book, change) => {
     book.shelf = change
+
 
     const updateShelfMapping = this.state.bookShelfMapping
     updateShelfMapping[book.id] = book.shelf

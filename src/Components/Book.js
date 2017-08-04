@@ -33,6 +33,11 @@ class Book extends Component {
                 onMouseLeave={() => {this.onMouseLeave()}}
                 style={{ width: 128, height: 193,
                   backgroundImage: `url(${this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : 'http://dvepublishing.com/images/cover_not_available.jpg'})` }}>
+
+                  {/*
+                    Creates a overlay ontop of the book cover to
+                    guide the user on where to find more information  
+                  */}
                   {this.state.isHovered ? (
                     <div className="hover-box"></div>) :
                   (
