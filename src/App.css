@@ -41,6 +41,7 @@ body, .app {
 }
 .bookshelf-books {
   text-align: center;
+
 }
 
 .open-search {
@@ -174,6 +175,8 @@ body, .app {
 }
 
 
+
+
 /* book detailes */
 .hover-box {
   background: #f0f0f0;
@@ -183,4 +186,58 @@ body, .app {
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
   position: relative;
+}
+
+.book-detailed {
+  margin-top: 20px;
+  padding: 0 10px 20px;
+}
+
+.book-cover-detailed-view {
+  box-shadow: 0 4px 7px rgba(0,0,0,0.16), 0 4px 7px rgba(0,0,0,0.23);
+  background: #eee;
+
+}
+
+.book-details-heading{
+  font-size: 110%;
+}
+
+.book-details-title{
+  margin-top: 5px;
+  padding: 0px;
+}
+
+.book-details-sub-title{
+  margin-top: -20px;
+  padding-bottom: 0px;
+}
+
+
+.book-details-description{
+  margin: 0 20%;
+  font-size: 120%;
+  word-spacing: 1.5;
+}
+
+.change-shelf {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #60ac5d;
+  background-image: url('./icons/arrow-drop-down.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 35px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.change-shelf select {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }

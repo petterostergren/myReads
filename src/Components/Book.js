@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import BookShelfChanger from './BookShelfChanger'
 
 
 
@@ -28,12 +29,8 @@ class Book extends Component {
             <Link to={`/details/${this.props.book.id}`}>
               <div
                 className="book-cover"
-                onMouseEnter={(currentBook) => {this.onMouseEnter()
-                  currentBook = this.props.book
-                  this.setState({detailedBook: currentBook}) }}
-                onMouseLeave={(currentBook) => {this.onMouseLeave(),
-                  currentBook = this.props.book
-                  this.setState({detailedBook: ""})}}
+                onMouseEnter={() => {this.onMouseEnter()}}
+                onMouseLeave={() => {this.onMouseLeave()}}
                 style={{ width: 128, height: 193,
                   backgroundImage: `url(${this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : 'http://dvepublishing.com/images/cover_not_available.jpg'})` }}>
                   {this.state.isHovered ? (
@@ -44,15 +41,10 @@ class Book extends Component {
                   </div>
             </Link>
             <div className="book-shelf-changer">
-              <select
-                value={this.props.book.shelf}
-                onChange={ (e) => {this.props.bookStateUpdated(this.props.book, e.target.value)}}>
-                <option value="none" disabled>Move to...</option>
-                <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
-                <option value="none">None</option>
-              </select>
+            <BookShelfChanger
+              book = {this.props.book}
+              bookStateUpdated={this.props.bookStateUpdated}
+            />
             </div>
           </div>
           <div className="book-title">{this.props.book.title}</div>
