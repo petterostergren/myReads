@@ -10,12 +10,19 @@ class Book extends Component {
     isHovered: false,
   }
 
+
+  /**
+  * @description Changes state of isHovered to enable overlaybox
+  */
   onMouseEnter = () => {
     this.setState({isHovered: true})
 
 
   }
 
+  /**
+  * @description Changes state of isHovered to disabled overlaybox
+  */
   onMouseLeave = () => {
     this.setState({isHovered : false})
 
@@ -36,7 +43,7 @@ class Book extends Component {
 
                   {/*
                     Creates a overlay ontop of the book cover to
-                    guide the user on where to find more information  
+                    guide the user on where to find more information
                   */}
                   {this.state.isHovered ? (
                     <div className="hover-box"></div>) :

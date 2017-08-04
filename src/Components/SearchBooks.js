@@ -8,7 +8,10 @@ class SearchBooks extends Component {
     query : '',
   }
 
-
+  /**
+* @description Updates the state containing the searchWord
+* @param {string} query
+*/
   updateQuery = (query) => {
       this.setState({ query })
     }

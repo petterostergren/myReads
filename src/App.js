@@ -30,9 +30,11 @@ class BooksApp extends Component {
     })
   }
 
-  // Handles bookshelf changes
-  // sets a new value to our bookShelfMapping
-  // and the calles our API to update it.
+  /**
+  * @description Updates the bookshelf and sends change to BookAPI
+  * @param {object} book - Selected book
+  * @param {string} change - Value that was changed to
+  */
   bookStateUpdated = (book, change) => {
     book.shelf = change
 
@@ -48,10 +50,14 @@ class BooksApp extends Component {
   }
 
 
-  // Handles search request when input field is changed
+  /**
+  * @description Sends a API Req. To see if seatched word matches any books
+  * @param {string} query - Search string
+  */
   onSearch = debounce((query) => {
 
       BooksAPI.search(query).then((searchResults) => {
+        // Validate that now errors was found.
         if (!searchResults || searchResults.error){
           this.setState({searchResult : []})
           return searchResults
