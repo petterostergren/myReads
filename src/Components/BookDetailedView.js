@@ -52,7 +52,7 @@ class BookDetailedView extends Component {
               />
 
           </div>
-          <section className="book-details-heading">
+          <div className="book-details-heading">
 
 
             <h1 className="book-details-title">
@@ -64,7 +64,7 @@ class BookDetailedView extends Component {
             <p className="book-details-author">{book.authors ?
               book.authors.join(", ") : "No Author Given" }</p>
 
-          </section>
+          </div>
           <div className="book-details-description">
             <p>{book.description}</p>
           </div>
