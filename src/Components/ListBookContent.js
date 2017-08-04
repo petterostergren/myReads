@@ -1,47 +1,33 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
-
-class ListBooksContent extends Component {
-  bookShelfLabels = [
-      {title: "Currently Reading",
-       label: "currentlyReading"
-      },
-      {
-       title: "Want to Read",
-       label: "wantToRead"
-      },
-      {
-       title: "Read",
-       label: "read"
-      }
-  ]
-
-
-  render() {
-    const bookShelves = []
-
-
-    //Goes through bookShelfLabels to autogen shelfs
-    for (const shelf of this.bookShelfLabels)
-    {bookShelves.push(
+const ListBooksContent = ({books, bookStateUpdated}) => (
+  <div>
       <BookShelf
-        key={shelf.label}
-        books={this.props.books.filter(b => b.shelf === shelf.label)}
-        bookStateUpdated={this.props.bookStateUpdated}
-        shelfLabel={shelf.label}
-        title={shelf.title}
+        key={"currentlyReading"}
+        books={books.filter(b => b.shelf === "currentlyReading")}
+        bookStateUpdated={bookStateUpdated}
+        shelfLabel={"currentlyReading"}
+        title={"Currently Reading"}
       />
-    )}
+      <BookShelf
+        key={"wantToRead"}
+        books={books.filter(b => b.shelf === "wantToRead")}
+        bookStateUpdated={bookStateUpdated}
+        shelfLabel={"wantToRead"}
+        title={"Want to Read"}
+      />
+      <BookShelf
+        key={"read"}
+        books={books.filter(b => b.shelf === "read")}
+        bookStateUpdated={bookStateUpdated}
+        shelfLabel={"read"}
+        title={"Read"}
+      />
+  </div>
 
-    return(
-      <div className="list-books-content">
-          {bookShelves}
-      </div>
-    )
-  }
-}
+)
 
 
 ListBooksContent.propTypes = {
