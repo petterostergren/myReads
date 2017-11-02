@@ -3,6 +3,9 @@ This is an application that lets you keep track of your interest in books.
 
 Would you like to read a book, remember what you reading at the moment or keep track on what you have already read?
 
+## Live Preview
+  [Myreads](https://pettermyreads.herokuapp.com/)
+
 ## Installation
 
 First of you need to grab a copy of this repository.
